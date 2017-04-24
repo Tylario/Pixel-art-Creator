@@ -1,0 +1,668 @@
+<html>
+	<head>
+		<title>Pixel art creator</title>
+		<link rel="icon" type="image/png" href="image/smile.png"/>
+
+	</head>
+	<style>
+		
+		#all{
+			position:absolute;
+			left:0px;
+			top:0px;
+			width:100%;
+			height:100%;
+		}
+		
+		#grid{
+			position:absolute;
+			left:12px;
+			top:12px;
+			height:512px;
+			width:512px;
+			border:0px solid black;
+			background-repeat: repeat;
+		     background-image: url("image/grid (1).png");
+		}
+		
+		#container{
+			position:absolute;
+			left:12px;
+			top:12px;
+			width:1035px;
+			height:500px;
+		}
+		
+		#setting{
+			position:absolute;
+			right:215px;
+			top:0px;
+			width:300px;
+			height:502px;
+			border:0px grey solid;
+		}
+		
+	
+		#download{
+			position:absolute;
+			bottom:10px;
+			left:113px;
+		}
+		
+		#add{
+			position:absolute;
+			right:80px;
+			top:18px;
+		}
+		
+		#subtract{
+			position:absolute;
+			left:80px;
+			top:18px;
+		}
+		
+		#add2{
+			position:absolute;
+			right:80px;
+			top:137px;
+		}
+		
+		#subtract2{
+			position:absolute;
+			left:80px;
+			top:137px;
+		}
+		
+		#colorpicker{
+			position:absolute;
+			height:200px;
+			width:270px;
+			top:211px;
+			right:-70px;
+			border:0px solid black;
+		}
+		
+		#color_1{
+			position:absolute;
+			border-radius:50%;
+			height:50;
+			width:50;
+			background-color:#ff0000;
+			right:215px;
+			top:210px;
+		}
+		
+		#color_2{
+			position:absolute;
+			border-radius:50%;
+			height:50;
+			width:50;
+			background-color:#0000ff;
+			right:95px;
+			top:210px;
+		}
+		
+		#color_3{
+			position:absolute;
+			border-radius:50%;
+			height:50;
+			width:50;
+			background-color:#ffFf00;
+			right:155px;
+			top:210px;
+		}
+		
+		#color_4{
+			position:absolute;
+			border-radius:50%;
+			height:50;
+			width:50;
+			background-color:#7f7f7f;
+			right:35px;
+			top:210px;
+		}
+		
+		#color_5{
+			position:absolute;
+			border-radius:50%;			
+			height:50;
+			width:50;
+			background-color:#000000;
+			right:35px;
+			top:270px;
+		}
+		
+		#color_6{
+			position:absolute;
+			border-radius:50%;			
+			height:50;
+			width:50;
+			background-color:#c800c8;
+			right:215px;
+			top:270px;
+		}
+		
+		#color_7{
+			position:absolute;
+			border-radius:50%;
+			height:50;
+			width:50;
+			background-color:#00ff00;
+			right:95px;
+			top:270px;
+		}
+		
+		#color_8{
+			position:absolute;
+			border-radius:50%;
+			height:50;
+			width:50;
+			background-color:#FF8C00;
+			right:155px;
+			top:270px;
+		}
+		   #tools{
+	           position:absolute;
+	           bottom:150px;
+	           width:100%;
+	           height:0px;
+	       }
+	       
+	       #float_left{
+	           position:absolute;
+	           height:90px;
+	           width:90px;
+	           left:70px;
+	       }
+	       #float_right{
+	           position:absolute;
+	           height:90px;
+	           width:90px;
+	           right:70px;
+	       }
+	
+		
+	
+	</style>
+	<body onload='init()' ondragstart="return false;" ondrop="return false;" >
+		<div id='all'>
+			<div id='grid'>
+			</div>
+			<div id='container'>
+				<span style="cursor: crosshair">
+					<canvas id="canvas" width="512" height="512" style='border:1px solid #000000;' onmousedown="event.preventDefault"></canvas>
+				</span>
+				<div id='setting'>
+					<div id='download'>
+						<button onclick='download()' > 
+							Download
+						</button>
+					</div>
+					<center>
+						Pixel Size <br>
+						<span id='size2'></span> x <span id='size'></span> <br><br>
+						Canvas Size <br>
+						64 x 64 <br><br>
+						Opacity<br>
+						<span id='Opacity'></span>
+						<br><br>
+						Colors
+						<br><br><br><br><br><br><br><br>
+						<div id='tools'>
+						Tools<br>
+						<div id='float_right'><img id='eraser' onclick='eraser_true()' src='image/eraser.png' width='15px'></div>
+						<div id='float_left'><img id='trash' onclick='trash2()' src='image/Trash2 .png' width='46px'></div>
+					</div>
+					</center>	
+					<div id='add'>
+						<button onclick='add_pixel()'>+</button>
+					</div>
+					<div id='subtract'>
+						<button onclick='subtract_pixel()'>-</button>
+					</div>
+					<div id='add2'>
+						<button onclick='add_Opacity()'>+</button>
+					</div>
+					<div id='subtract2'>
+						<button onclick='subtract_Opacity()'>-</button>
+					</div>
+					
+					<div id='color_1' onclick='color1_pick()'></div>
+					<div id='color_2' onclick='color2_pick()'></div>
+					<div id='color_3' onclick='color3_pick()'></div>
+					<div id='color_4' onclick='color4_pick()'></div>
+					<div id='color_5' onclick='color5_pick()'></div>
+					<div id='color_6' onclick='color6_pick()'></div>
+					<div id='color_7' onclick='color7_pick()'></div>
+					<div id='color_8' onclick='color8_pick()'></div>
+				</div>
+				<div id='colorpicker'>
+					<center>
+						<button onclick = subtract_red2()>-10</button><button onclick='subtract_red()'>-1</button> Red value: <span id='red'></span> <button onclick='add_red()'>+1</button><button onclick = 'add_red2()'>+10</button>  <br><br>
+						<button onclick = 'subtract_green2()'>-10</button> <button onclick='subtract_green()'>-1</button> Green Value: <span id='green'></span> <button onclick='add_green()'>+1</button><button onclick = 'add_green2()'>+10</button> <br><br>
+						<button onclick = 'subtract_blue2()'>-10</button> <button onclick='subtract_blue()'>-1</button> Blue Value: <span id='blue'></span> <button onclick='add_blue()'>+1</button> <button onclick = 'add_blue2()'>+10</button> 
+					</center>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	<script>
+		
+		var canvas;
+		var ctx;
+		var mouset = false;
+		var size = 8;
+		var Opacity = 1;	
+		
+		var colors = [
+			[255, 0, 0],
+			[0, 0, 255],
+			[255, 255, 0],
+			[127, 127, 127],
+			[0, 0, 0],
+			[200, 0, 200],
+			[0, 255, 0],
+			[255, 127, 0]
+		]
+		
+		var colorselect = 0;
+		
+		var currentcolor = [0, 0, 255];
+		var eraser = false;
+		function init() {
+			
+			color1_pick();
+			document.getElementById('size').innerText = size/8;
+			document.getElementById('size2').innerText = size/8;
+			document.getElementById('Opacity').innerText = Opacity * 100 + '%';
+
+			canvas = document.getElementById('canvas');
+			if (canvas.getContext) {
+				ctx = canvas.getContext('2d');
+				//left, top, width, height
+				
+				
+				ctx.fillStyle = 'rgba(0, 0, 200, ' + Opacity + ')';
+				//ctx.fillRect(0, 0, 8, 1);
+				//ctx.fillRect(0, 0, 8, 1);
+
+			}
+    		
+
+			
+			var data = canvas.data;
+			
+			var myImageData = ctx.getImageData(0, 0, 150, 150);
+			
+			ctx.putImageData(myImageData, 0, 0);
+			//alert('height:' + canvas.height + 'width:' + canvas.width + 'data:' + canvas.getImageData);
+			canvas.toDataURL('image/png');
+		}
+		
+		function download(){
+   	 		var downloaddata = canvas.toDataURL();
+			window.open(downloaddata);
+			canvas.fromDataURL(downloaddata);
+		}
+	
+		
+		function click(){
+			 ctx.fillStyle = 'rgba('+currentcolor[0]+', '+currentcolor[1]+', '+currentcolor[2]+', ' + Opacity + ')';
+	           //var x = Math.random()*500;
+	           //var y = Math.random()*500;
+	           var x = event.clientX;
+	           var y = event.clientY;
+	           x =   Math.round((x - (size/2) - 12)/size)*size;
+	           y =   Math.round((y - (size/2) - 12)/size)*size;
+			
+			
+	           if(eraser == false){
+	               if(mouset == true){
+	                   ctx.fillRect(x, y, size, size);
+	               }
+	           } else {
+	               if(mouset == true){
+	                   ctx.clearRect(x, y, size, size);
+	               }
+	           }
+		}
+		
+		function add_pixel(){
+			if(size <= 256){
+				size = size * 2;
+			}
+			document.getElementById('size').innerText = size/8;
+			document.getElementById('size2').innerText = size/8;
+			if(size == 1){
+				document.getElementById('grid').style.backgroundImage = 'url("image/ .png")';
+			}
+			if(size == 2){
+				document.getElementById('grid').style.backgroundImage = 'url("image/ .png")';
+			}
+			if(size == 4){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (2).png")';
+			}
+			if(size == 8){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid(1).png")';
+			}
+			if(size == 16){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (3).png")';
+			}
+			if(size == 32){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (4).png")';
+			}
+			if(size == 64){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (5).png")';
+			}
+			if(size == 128){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (6).png")';
+			}
+			if(size == 256){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (7).png")';
+			}
+			if(size == 512){
+				document.getElementById('grid').style.backgroundImage = 'url("image/ .png")';
+			}
+		}
+		
+		function subtract_pixel(){
+			if(size > 1){
+				size = size / 2;
+			}
+			document.getElementById('size').innerText = size/8;
+			document.getElementById('size2').innerText = size/8;
+			
+			if(size == 1){
+				document.getElementById('grid').style.backgroundImage = 'url("image/ .png")';
+			}
+			if(size == 2){
+				document.getElementById('grid').style.backgroundImage = 'url("image/ .png")';
+			}
+			if(size == 4){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (2).png")';
+			}
+			if(size == 8){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid(1).png")';
+			}
+			if(size == 16){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (3).png")';
+			}
+			if(size == 32){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (4).png")';
+			}
+			if(size == 64){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (5).png")';
+			}
+			if(size == 128){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (6).png")';
+			}
+			if(size == 256){
+				document.getElementById('grid').style.backgroundImage = 'url("image/grid (7).png")';
+			}
+			if(size == 512){
+				document.getElementById('grid').style.backgroundImage = 'url("image/ .png")';
+			}
+		}
+		function add_Opacity(){
+			if(Opacity < 1){
+				Opacity = Math.floor((Opacity + 0.1)*100)/100;
+			}
+			ctx.fillStyle = 'rgba('+currentcolor[0]+', '+currentcolor[1]+', '+currentcolor[2]+', ' + Opacity + ')';
+
+			document.getElementById('Opacity').innerText = //100 -
+												  (Opacity * 100) + "%";
+		}
+		
+		function subtract_Opacity(){
+			if(Opacity > 0){
+				Opacity = Math.floor((Opacity - 0.1)*10)/10;
+			}
+			ctx.fillStyle = 'rgba('+currentcolor[0]+', '+currentcolor[1]+', '+currentcolor[2]+', ' + Opacity + ')';
+
+			document.getElementById('Opacity').innerText = //100 -
+												  (Opacity * 100) + "%";
+		}
+		
+		function mousetrue(){
+			mouset = true;
+		}
+		
+		function mousefalse(){
+			mouset = false;
+		}
+
+
+		function color1_pick(){
+			currentcolor = colors[0];
+			colorselect = [0];
+			eraser = false;
+			document.getElementById('red').innerText = colors[0][0];
+			document.getElementById('green').innerText = colors[0][1];
+			document.getElementById('blue').innerText = colors[0][2];
+		}
+		function color2_pick(){
+			currentcolor = colors[1];
+			colorselect = [1]
+			eraser = false;
+			document.getElementById('red').innerText = colors[1][0];
+			document.getElementById('green').innerText = colors[1][1];
+			document.getElementById('blue').innerText = colors[1][2];
+		}
+		function color3_pick(){
+			currentcolor = colors[2];
+			colorselect = [2];
+			eraser = false;
+			document.getElementById('red').innerText = colors[2][0];
+			document.getElementById('green').innerText = colors[2][1];
+			document.getElementById('blue').innerText = colors[2][2];
+		}
+			function color4_pick(){
+			currentcolor = colors[3];
+			colorselect = [3];
+				eraser = false;
+			document.getElementById('red').innerText = colors[3][0];
+			document.getElementById('green').innerText = colors[3][1];
+			document.getElementById('blue').innerText = colors[3][2];
+		}
+			function color5_pick(){
+			currentcolor = colors[4];
+			colorselect = [4];
+				eraser = false;
+			document.getElementById('red').innerText = colors[4][0];
+			document.getElementById('green').innerText = colors[4][1];
+			document.getElementById('blue').innerText = colors[4][2];
+		}
+			function color6_pick(){
+			currentcolor = colors[5];
+			colorselect = [5];
+				eraser = false;
+			document.getElementById('red').innerText = colors[5][0];
+			document.getElementById('green').innerText = colors[5][1];
+			document.getElementById('blue').innerText = colors[5][2];
+		}	
+		function color7_pick(){
+			currentcolor = colors[6];
+			colorselect = [6];
+			eraser = false;
+			document.getElementById('red').innerText = colors[6][0];
+			document.getElementById('green').innerText = colors[6][1];
+			document.getElementById('blue').innerText = colors[6][2];
+		}	
+		function color8_pick(){
+			currentcolor = colors[7];
+			colorselect = [7];
+			eraser = false;
+			document.getElementById('red').innerText = colors[7][0];
+			document.getElementById('green').innerText = colors[7][1];
+			document.getElementById('blue').innerText = colors[7][2];
+		}
+		
+		var divname = [
+			'color_1',
+			'color_2',
+			'color_3',
+			'color_4',
+			'color_5',
+			'color_6',
+			'color_7',
+			'color_8',
+		
+		
+		
+		
+		];
+		
+			function eraser_true(){
+	           eraser = true;
+	       }
+			function add_red2(){
+				for(i=0; i<10; i++){
+					add_red();
+				}
+			}
+			function add_green2(){
+				for(i=0; i<10; i++){
+					add_green();
+				}
+			}
+			function add_blue2(){
+				for(i=0; i<10; i++){
+					add_blue();
+				}
+			}
+			function subtract_red2(){
+				for(i=0; i<10; i++){
+					subtract_red();
+				}
+			}
+			function subtract_green2(){
+				for(i=0; i<10; i++){
+					subtract_green();
+				}
+			}
+			function subtract_blue2(){
+				for(i=0; i<10; i++){
+					subtract_blue();
+				}
+			}
+			
+			 function trash2(){
+	            if (confirm("Are you sure, this will erase everything?") == true) {
+	               ctx.fillStyle = 'rgba('+currentcolor[0]+', '+currentcolor[1]+', '+currentcolor[2]+', ' + Opacity + ')';5
+	               ctx.clearRect(0, 0, 512, 512);
+	            } else {
+	            }
+	       
+	       }
+			
+		function add_red(){
+			
+			if(colors[colorselect][0]<255){
+				colors[colorselect][0]++;
+			}
+			currentcolor = colors[colorselect];
+			
+			rgb2hex(colors[colorselect][0],colors[colorselect][1], colors[colorselect][2] , 1);
+
+			
+			document.getElementById(divname[colorselect]).style.backgroundColor = hex_color;
+			document.getElementById('red').innerText = colors[colorselect][0];
+			document.getElementById('green').innerText = colors[colorselect][1];
+			document.getElementById('blue').innerText = colors[colorselect][2];
+
+		}
+		function add_green(){
+		if(colors[colorselect][1]<255){
+				colors[colorselect][1]++;
+			}
+			currentcolor = colors[colorselect];
+			
+			rgb2hex(colors[colorselect][0],colors[colorselect][1], colors[colorselect][2] , 1);
+
+			
+			document.getElementById(divname[colorselect]).style.backgroundColor = hex_color;
+			document.getElementById('red').innerText = colors[colorselect][0];
+			document.getElementById('green').innerText = colors[colorselect][1];
+			document.getElementById('blue').innerText = colors[colorselect][2];
+		
+		}
+		function add_blue(){
+		if(colors[colorselect][2]<255){
+				colors[colorselect][2]++;
+			}
+			currentcolor = colors[colorselect];
+			
+			rgb2hex(colors[colorselect][0],colors[colorselect][1], colors[colorselect][2] , 1);
+
+			
+			document.getElementById(divname[colorselect]).style.backgroundColor = hex_color;
+			document.getElementById('red').innerText = colors[colorselect][0];
+			document.getElementById('green').innerText = colors[colorselect][1];
+			document.getElementById('blue').innerText = colors[colorselect][2];
+		
+		}
+		function subtract_red(){
+		if(colors[colorselect][0]>0){
+				colors[colorselect][0]--;
+			}
+			currentcolor = colors[colorselect];
+			
+			rgb2hex(colors[colorselect][0],colors[colorselect][1], colors[colorselect][2] , 1);
+
+			
+			document.getElementById(divname[colorselect]).style.backgroundColor = hex_color;
+			document.getElementById('red').innerText = colors[colorselect][0];
+			document.getElementById('green').innerText = colors[colorselect][1];
+			document.getElementById('blue').innerText = colors[colorselect][2];
+		
+		}
+		function subtract_green(){
+		if(colors[colorselect][1]>0){
+				colors[colorselect][1]--;
+			}
+			currentcolor = colors[colorselect];
+			
+			rgb2hex(colors[colorselect][0],colors[colorselect][1], colors[colorselect][2] , 1);
+
+			
+			document.getElementById(divname[colorselect]).style.backgroundColor = hex_color;
+			document.getElementById('red').innerText = colors[colorselect][0];
+			document.getElementById('green').innerText = colors[colorselect][1];
+			document.getElementById('blue').innerText = colors[colorselect][2];
+		
+		}
+		function subtract_blue(){
+		if(colors[colorselect][2]>0){
+				colors[colorselect][2]--;
+			}
+			currentcolor = colors[colorselect];
+			
+			rgb2hex(colors[colorselect][0],colors[colorselect][1], colors[colorselect][2] , 1);
+
+			
+			document.getElementById(divname[colorselect]).style.backgroundColor = hex_color;
+			document.getElementById('red').innerText = colors[colorselect][0];
+			document.getElementById('green').innerText = colors[colorselect][1];
+			document.getElementById('blue').innerText = colors[colorselect][2];
+		
+		}
+		
+		
+		var hex_color = 0;
+
+	
+		function rgb2hex(red, green, blue, opacity) {
+  			 var rgb = blue | (green << 8) | (red << 16);
+      		 hex_color = '#' + (0x1000000 + rgb).toString(16).slice(1)
+		}
+		
+		
+		document.getElementById("all").addEventListener("mousedown", mousetrue);
+		document.getElementById("all").addEventListener("mousedown", click);
+		document.getElementById("all").addEventListener("mouseup", mousefalse);
+		document.getElementById("canvas").addEventListener("mousemove", click);
+
+		
+	</script>
+</html>

@@ -5,7 +5,7 @@ Pixel art creator
 ## Summary
 This project is a simple pixel art creator. You can use tools like eraser, pen, etc to create and download a 512 x 512 canvas
 
-[Try it out]()
+[Try it out](https://tylario.github.io/Pixel-art-Creator/index.html)
 
 
 ## Usage
